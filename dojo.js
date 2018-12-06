@@ -33,9 +33,6 @@ fs.readFile('./numerosJon.txt', 'utf-8', (err, data) => {
   }
 })
 
-let arrayP = [3, 4, 5, 8, 8, 2, 8, 6, 5]
-console.log(calcularCode(arrayP))
-
 function calcularCode(array) {
   if(array.some(num => num === '?') == false) {
     let multi = 9,
