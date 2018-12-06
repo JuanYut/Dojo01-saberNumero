@@ -21,18 +21,43 @@ fs.readFile('./numerosJon.txt', 'utf-8', (err, data) => {
 
       if(cont === 3) {
         let cadenaNum = ''
+        let arrayNums = []
         for(let num of myArray) {
-          cadenaNum += saberNumero(num)
+          //cadenaNum += saberNumero(num)
+          arrayNums.push(saberNumero(num))
         }
-        console.log(cadenaNum) // 000000000
+        console.log(arrayNums + ' ' + calcularCode(arrayNums)) // 000000000 0
       }
     }
 
   }
 })
 
+let arrayP = [3, 4, 5, 8, 8, 2, 8, 6, 5]
+console.log(calcularCode(arrayP))
+
+function calcularCode(array) {
+  if(array.some(num => num === '?') == false) {
+    let multi = 9,
+      sum = 0
+    for(let num of array) {
+      sum += multi * num
+      multi--
+    }
+    
+    if(sum % 11 === 0) {
+      return 0
+    } else {
+      return 'ERR'
+    }
+    
+  } else {
+    return 'ILL'
+  }
+}
+
 function saberNumero(cadenaNum) {
-  let num = 666
+  let num
   switch(cadenaNum) {
     case ' _ | ||_|' :
       num = 0
@@ -65,7 +90,7 @@ function saberNumero(cadenaNum) {
       num = 9
       break
     default:
-      console.log('Ocurrio algo raro')
+      num = '?'
       break
   }
   return num
